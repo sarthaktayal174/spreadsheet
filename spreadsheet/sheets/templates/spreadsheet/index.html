@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'spreadsheet/base.html' %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'spreadsheet/css/styles.css' %}">
+    <script src="{% static 'spreadsheet/js/spreadsheet.js' %}"></script>
+
+
+{% block content %}
+<!-- Include DataTables CSS -->
+<link rel="stylesheet" 
+      href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<!-- Display Table -->
+<table id="spreadsheet-table" class="display">
+    <thead>
+        <tr>
+            <th>#</th>
+            {% for i in "ABCDEFGHIJ" %}
+                <th>{{ i }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<!-- Include jQuery and DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#spreadsheet-table').DataTable({
+            "ajax": "/api/spreadsheets/",  // Replace with your actual API URL
+            "columns": [
+                { "data": "id" },
+                { "data": "A" },
+                { "data": "B" },
+                { "data": "C" },
+                { "data": "D" },
+                { "data": "E" },
+                { "data": "F" },
+                { "data": "G" },
+                { "data": "H" },
+                { "data": "I" },
+                { "data": "J" }
+            ]
+        });
+    });
+</script>
+
+{% endblock %}
